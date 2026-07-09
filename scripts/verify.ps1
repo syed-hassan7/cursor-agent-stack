@@ -46,5 +46,24 @@ if (-not (Select-String -Path "project-template\install-frontend.ps1" -Pattern "
 if (-not (Select-String -Path "project-template\install-frontend.sh" -Pattern "BUNDLE=2d" -Quiet)) { $Fail = 1 }
 if (-not (Select-String -Path "project-template\install-3d.ps1" -Pattern "-Bundle 3d" -Quiet)) { $Fail = 1 }
 
+Write-Host "== RTK bundle =="
+if (-not (Test-Path "cursor\skills\rtk\SKILL.md")) { Write-Error "Missing: cursor\skills\rtk\SKILL.md"; $Fail = 1 }
+if (-not (Select-String -Path "install.ps1" -Pattern "RTK \(token-efficient shell\)" -Quiet)) { $Fail = 1 }
+if (-not (Select-String -Path "install.sh" -Pattern "rtk init -g --agent cursor" -Quiet)) { $Fail = 1 }
+
+$rtkCmd = Get-Command rtk -ErrorAction SilentlyContinue
+if ($rtkCmd) {
+  $show = (& rtk init -g --agent cursor --show 2>&1 | Out-String)
+  if ($show -match 'Cursor hook:\s*\[ok\]') {
+    Write-Host "RTK Cursor hook: configured" -ForegroundColor DarkGray
+  } elseif ($IsWindows -or $env:OS -match 'Windows') {
+    Write-Host "RTK CLI present; Cursor hook needs macOS/Linux/WSL (Windows: use rtk prefix + skill)" -ForegroundColor DarkGray
+  } else {
+    Write-Warning "RTK CLI present but Cursor hook not configured. Re-run install.sh"
+  }
+} else {
+  Write-Host "RTK CLI not installed (optional — winget install rtk-ai.rtk)" -ForegroundColor DarkGray
+}
+
 if ($Fail -ne 0) { throw "VERIFY FAILED" }
 Write-Host "VERIFY OK" -ForegroundColor Green

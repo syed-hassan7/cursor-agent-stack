@@ -29,6 +29,11 @@ echo "== Install bundle scripts =="
 grep -q "\-Bundle 2d" project-template/install-frontend.ps1 || FAIL=1
 grep -q 'BUNDLE=2d' project-template/install-frontend.sh || FAIL=1
 
+echo "== RTK bundle =="
+test -f cursor/skills/rtk/SKILL.md || FAIL=1
+grep -q 'rtk init -g --agent cursor' install.sh || FAIL=1
+grep -q 'RTK (token-efficient shell)' install.ps1 || FAIL=1
+
 if [[ "$FAIL" -ne 0 ]]; then
   echo "VERIFY FAILED" >&2
   exit 1

@@ -26,6 +26,29 @@ Copy-Item -Force (Join-Path $RepoRoot "cursor\hooks.json") $hooksJson
 Copy-Item -Force (Join-Path $RepoRoot "cursor\statusline.js") (Join-Path $CursorHome "statusline.js")
 Copy-Item -Force (Join-Path $RepoRoot "cursor\session\.gitignore") (Join-Path $CursorHome "session\.gitignore")
 
+Write-Host ""
+Write-Host "== RTK (token-efficient shell) ==" -ForegroundColor Cyan
+$rtk = Get-Command rtk -ErrorAction SilentlyContinue
+if (-not $rtk) {
+  Write-Host "RTK binary not found — skill installed; prefix commands manually after install." -ForegroundColor Yellow
+  Write-Host "  Windows: winget install rtk-ai.rtk" -ForegroundColor DarkGray
+  Write-Host "  macOS/Linux: see https://github.com/rtk-ai/rtk" -ForegroundColor DarkGray
+} else {
+  $rtkVersion = (& rtk --version 2>&1 | Select-Object -First 1).ToString().Trim()
+  Write-Host "RTK $rtkVersion" -ForegroundColor DarkGray
+  if ($IsWindows -or $env:OS -match 'Windows') {
+    Write-Host "RTK skill + CLI ready. Prefix noisy commands: rtk git diff, rtk tsc, rtk vitest run" -ForegroundColor Green
+    Write-Host "Cursor hook auto-install is Unix-only — use WSL/Linux CI, or rely on RTK skill + rtk prefix." -ForegroundColor Yellow
+  } else {
+    & rtk init -g --agent cursor --auto-patch --hook-only 2>&1 | ForEach-Object { Write-Host $_ }
+    if ($LASTEXITCODE -eq 0) {
+      Write-Host "RTK Cursor hook installed (compresses shell output into context)" -ForegroundColor Green
+    } else {
+      Write-Host "RTK hook install failed — skill still works. Run: rtk init -g --agent cursor --auto-patch --hook-only" -ForegroundColor Yellow
+    }
+  }
+}
+
 $cliConfig = Join-Path $CursorHome "cli-config.json"
 $statusLineBlock = @"
   "statusLine": {
@@ -48,4 +71,5 @@ Write-Host $statusLineBlock -ForegroundColor DarkGray
 Write-Host ""
 Write-Host "  4. Per repo: copy project-template\.cursor\session\.gitignore to .cursor\session\"
 Write-Host "  5. After changes: .\scripts\verify.ps1"
-Write-Host "  6. Web apps: install-frontend.ps1 (2D) or install-3d.ps1 (R3F) — see docs/FRONTEND.md and docs/3D.md"
+Write-Host "  6. Optional RTK CLI: winget install rtk-ai.rtk (Windows) — prefix noisy shell commands"
+Write-Host "  7. Web apps: install-frontend.ps1 (2D) or install-3d.ps1 (R3F) — see docs/FRONTEND.md and docs/3D.md"

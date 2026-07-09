@@ -24,6 +24,20 @@ cp "$REPO_ROOT/cursor/hooks.json" "$CURSOR_HOME/hooks.json"
 cp "$REPO_ROOT/cursor/statusline.js" "$CURSOR_HOME/statusline.js"
 cp "$REPO_ROOT/cursor/session/.gitignore" "$CURSOR_HOME/session/.gitignore"
 
+echo ""
+echo "== RTK (token-efficient shell) =="
+if command -v rtk >/dev/null 2>&1; then
+  rtk --version 2>/dev/null | head -n1 || true
+  if rtk init -g --agent cursor --auto-patch --hook-only; then
+    echo "RTK Cursor hook installed (compresses shell output into context)"
+  else
+    echo "RTK hook install failed — skill still works. Run: rtk init -g --agent cursor --auto-patch --hook-only" >&2
+  fi
+else
+  echo "RTK binary not found — skill installed; hook skipped."
+  echo "  Install RTK, then re-run install.sh or: rtk init -g --agent cursor --auto-patch --hook-only"
+fi
+
 SLASH_HOME="${CURSOR_HOME//\\//}"
 
 echo ""
@@ -36,4 +50,4 @@ echo "  3. Optional CLI HUD — add statusLine to $CURSOR_HOME/cli-config.json:"
 echo '     "statusLine": { "type": "command", "command": "node '"$SLASH_HOME"'/statusline.js", ... }'
 echo "  4. Per repo: copy project-template/.cursor/session/.gitignore"
 echo "  5. Per repo: install-frontend.sh (2D) or install-3d.sh (R3F) — docs/FRONTEND.md and docs/3D.md"
-echo "  5. After changes: ./scripts/verify.sh"
+echo "  6. After changes: ./scripts/verify.sh"

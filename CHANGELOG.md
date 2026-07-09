@@ -2,6 +2,21 @@
 
 All notable releases of [cursor-agent-stack](https://github.com/darkyzowo/cursor-agent-stack).
 
+## [v0.4.1] — 2026-07-09
+
+### Added
+- **RTK Cursor hook** step in `install.sh` (macOS/Linux): `rtk init -g --agent cursor --auto-patch --hook-only`
+- **RTK bundle** checks in `scripts/verify.ps1` / `verify.sh`
+- README: RTK layer table, context-troubleshooting rows, optional RTK in requirements
+
+### Changed
+- `install.ps1`: RTK CLI detection; Windows path documents skill + prefix (hook is Unix-only per RTK)
+- `install.sh`: fixed duplicate next-step numbering
+
+### Notes
+- RTK **skill** ships globally; **hook** auto-patches `~/.cursor/hooks.json` on Unix only
+- Windows users: `winget install rtk-ai.rtk` + agent `rtk` prefix; track with `rtk gain`
+
 ## [v0.4.0] — 2026-06-30
 
 ### Added

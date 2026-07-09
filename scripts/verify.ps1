@@ -23,6 +23,17 @@ Get-ChildItem "cursor\hooks\*.js" | ForEach-Object {
   if ($LASTEXITCODE -ne 0) { $Fail = 1 }
 }
 
+Write-Host "== Single sessionStart =="
+$hooksJson = Get-Content -Raw "cursor\hooks.json" | ConvertFrom-Json
+$ss = @($hooksJson.hooks.sessionStart)
+if ($ss.Count -ne 1) { Write-Error "Expected exactly 1 sessionStart hook, got $($ss.Count)"; $Fail = 1 }
+if ($ss[0].command -notmatch 'session-rehydrate') { Write-Error "sessionStart must be session-rehydrate.js"; $Fail = 1 }
+if (Test-Path "cursor\hooks\post-compact-rehydrate.js") { Write-Error "post-compact-rehydrate.js should be removed"; $Fail = 1 }
+if (Test-Path "cursor\rules\context-budget.mdc") { Write-Error "context-budget.mdc should be merged into session-memory.mdc"; $Fail = 1 }
+if (-not (Test-Path "docs\MCP.md")) { Write-Error "Missing docs/MCP.md"; $Fail = 1 }
+if (-not (Test-Path "project-template\.cursor\mcp.n8n.json.example")) { Write-Error "Missing mcp.n8n.json.example"; $Fail = 1 }
+
+
 Write-Host "== ui-ux-pro-max stack search =="
 $Search = Join-Path $Root "project-template\.cursor\skills\ui-ux-pro-max\scripts\search.py"
 $Py = Resolve-Python
@@ -67,3 +78,4 @@ if ($rtkCmd) {
 
 if ($Fail -ne 0) { throw "VERIFY FAILED" }
 Write-Host "VERIFY OK" -ForegroundColor Green
+

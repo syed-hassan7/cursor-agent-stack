@@ -2,6 +2,28 @@
 
 All notable releases of [cursor-agent-stack](https://github.com/darkyzowo/cursor-agent-stack).
 
+## [v0.5.0] — 2026-07-09
+
+### Fixed
+- **Double sessionStart injection** after `/compact` — removed `post-compact-rehydrate.js`; single `session-rehydrate.js` covers all resumes
+- Checkpoint noise: filter `agent-tools/`, `sim_*` / `debug_*` / `repro_*` / `inspect_*` scripts; skip HUD meta lines in recent messages
+
+### Changed
+- Merged `context-budget.mdc` into `session-memory.mdc` (one always-on memory/budget rule)
+- Slim `buildSessionMemoryBrief()` — paths + archive index only (playbook stays in the rule)
+- `MAX_FILES` 40 → 20
+- Pointer rules (`frontend-design-pointer`, `3d-interactive-pointer`) → `alwaysApply: false` + globs
+- `secret-guard` timeout 5s → 15s (failClosed was blocking large writes on slow Windows)
+
+### Added
+- [docs/MCP.md](docs/MCP.md) — project-scoped MCP pattern (no true lazy load in Cursor)
+- `project-template/.cursor/mcp*.json.example` — n8n / iru stubs with `${env:...}`
+- `scripts/mcp-link.ps1` / `mcp-link.sh` — copy examples into a project
+- Verify checks: single sessionStart, no duplicate rehydrate, MCP docs present
+
+### Notes
+- Cursor cannot load MCP only on first tool call — disable servers or keep them out of global `~/.cursor/mcp.json`
+- After install: migrate heavy MCP out of global config into per-project `.cursor/mcp.json`
 ## [v0.4.1] — 2026-07-09
 
 ### Added
@@ -59,3 +81,4 @@ All notable releases of [cursor-agent-stack](https://github.com/darkyzowo/cursor
 ## [v0.1.0] — initial
 
 - Session memory hooks, rules, caveman, RTK, statusline
+

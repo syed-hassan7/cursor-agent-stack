@@ -11,6 +11,19 @@ for f in cursor/hooks/*.js; do
   node -c "$f" || FAIL=1
 done
 
+echo "== Single sessionStart =="
+node -e '
+const fs=require("fs");
+const j=JSON.parse(fs.readFileSync("cursor/hooks.json","utf8"));
+const ss=j.hooks.sessionStart||[];
+if(ss.length!==1){console.error("Expected 1 sessionStart, got",ss.length);process.exit(1)}
+if(!String(ss[0].command||"").includes("session-rehydrate")){console.error("bad sessionStart");process.exit(1)}
+' || FAIL=1
+test ! -f cursor/hooks/post-compact-rehydrate.js || FAIL=1
+test ! -f cursor/rules/context-budget.mdc || FAIL=1
+test -f docs/MCP.md || FAIL=1
+test -f project-template/.cursor/mcp.n8n.json.example || FAIL=1
+
 echo "== ui-ux-pro-max stack search =="
 PY=python3
 command -v python3 >/dev/null 2>&1 || PY=python
@@ -39,3 +52,4 @@ if [[ "$FAIL" -ne 0 ]]; then
   exit 1
 fi
 echo "VERIFY OK"
+

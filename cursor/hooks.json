@@ -5,11 +5,6 @@
       {
         "command": "node hooks/session-rehydrate.js",
         "timeout": 5
-      },
-      {
-        "command": "node hooks/post-compact-rehydrate.js",
-        "matcher": "compact",
-        "timeout": 8
       }
     ],
     "preCompact": [
@@ -22,7 +17,7 @@
       {
         "command": "node hooks/secret-guard.js",
         "matcher": "Write|StrReplace",
-        "timeout": 5,
+        "timeout": 15,
         "failClosed": true
       }
     ],

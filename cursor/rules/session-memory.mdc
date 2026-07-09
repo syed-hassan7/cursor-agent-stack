@@ -1,11 +1,13 @@
 ---
-description: Session memory — checkpoint, compact archives, past-session forensics (always know the paths)
+description: Session memory + context budget — checkpoint, compact, forensics, 50% thresholds
 alwaysApply: true
 ---
 
-# Session memory
+# Session memory + context budget
 
 Hooks + disk files track session state per **workspace root**. You already know this — do **not** ask the user for folder paths when they refer to a past session, yesterday's work, last compact, or "what we changed before summarize."
+
+Quality drops sharply once context use passes ~50%. Prefer **compact + checkpoint** over new chat or manual handoffs.
 
 ## Behavior
 
@@ -30,6 +32,23 @@ Within that folder:
 
 All session files are gitignored in repos; home copies are local only.
 
+## Context thresholds
+
+| Usage | Agent behavior |
+|-------|----------------|
+| **0–40%** | Normal work |
+| **50%+** | Budget mode + **compact when HUD warns or user says `/compact`** |
+| **70%+** | Compact now if not done since last major task slice |
+| **85%+** | Compact immediately; continue only from `.cursor/session/checkpoint.md` |
+
+## Budget mode (50%+)
+
+- **Grep first** — `head_limit` 20–50; no full-tree reads.
+- **RTK for shell** — never paste full build/test logs.
+- **Cite `path:line`** — do not re-quote large code blocks already in thread.
+- **One task slice** — finish current step before expanding scope.
+- **MCP responses** — summarize tool results; avoid dumping full list/export payloads into the thread. Prefer minimal fields for health-checks. See docs/MCP.md.
+
 ## When user asks about past work
 
 Triggers: "yesterday's session", "last compact", "what UX change broke X", "before we summarized", "trace back", "what were we doing Tuesday."
@@ -51,5 +70,22 @@ Triggers: "yesterday's session", "last compact", "what UX change broke X", "befo
 | Continue current task | `checkpoint.md` (injected on sessionStart) |
 | Investigate older session / regression after compact | `archive/checkpoint-*.md` |
 | Exact conversation wording | Grep Cursor transcript JSONL (last resort) |
+
+## After `/summarize`
+
+1. Trust injected checkpoint + archive index — do **not** re-explore from scratch.
+2. If no injection visible, **Read** `.cursor/session/checkpoint.md` before continuing.
+3. Check `.cursor/session/hook-audit.log` — `preCompact` should include `archive/checkpoint-...md`.
+
+**User triggers:** `/compact`, or when HUD shows `↻ compact` at 50%+.
+
+## New chat (rare)
+
+Only for **unrelated** work or a **different workspace** — not as substitute for compact in the same task.
+
+## What we do not use
+
+- Manual handoff copy-paste as primary memory
+- Ambient full-repo context loading
 
 `sessionStart` hook injects a live index of recent compacts + current checkpoint. Trust it; refresh with Glob if stale.

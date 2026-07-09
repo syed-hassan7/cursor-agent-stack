@@ -1,6 +1,14 @@
 ---
 description: When a repo has Impeccable installed, use it for frontend UI work
-alwaysApply: true
+alwaysApply: false
+globs:
+  - "**/app/**"
+  - "**/components/**"
+  - "**/pages/**"
+  - "**/src/**/*.{tsx,jsx,css,scss}"
+  - "**/PRODUCT.md"
+  - "**/DESIGN.md"
+  - "**/.impeccable/**"
 ---
 
 # Frontend design (project-local)

@@ -13,7 +13,7 @@
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="MIT License" /></a>
   <a href="https://cursor.com"><img src="https://img.shields.io/badge/Cursor-Agent%20Hooks-000000?style=flat&logo=cursor&logoColor=white" alt="Cursor" /></a>
   <a href="https://nodejs.org"><img src="https://img.shields.io/badge/node-%3E%3D18-green.svg" alt="Node 18+" /></a>
-  <a href="https://github.com/darkyzowo/cursor-agent-stack/releases/tag/v0.4.1"><img src="https://img.shields.io/badge/release-v0.4.1-blue.svg" alt="v0.4.1" /></a>
+  <a href="https://github.com/darkyzowo/cursor-agent-stack/releases/tag/v0.5.0"><img src="https://img.shields.io/badge/release-v0.5.0-blue.svg" alt="v0.5.0" /></a>
 </p>
 
 <p align="center">
@@ -33,7 +33,7 @@
 | **3D / WebGL** | `project-template/install-3d.ps1` | r3f-three skill, react-three-fiber CSV, ProofScene gate |
 | **Hybrid** | Both installers | [HYBRID.md](docs/HYBRID.md) — lane routing for UI + R3F |
 
-Global stays lean. Project modules opt in per repo.
+Global stays lean (session hooks + slim rules). Heavy MCP belongs in **project** `.cursor/mcp.json` — see [MCP.md](docs/MCP.md). Project UI/3D modules opt in per repo.
 
 ---
 
@@ -106,11 +106,11 @@ CI: `.github/workflows/verify.yml` on push/PR.
 
 ## Releases
 
-[CHANGELOG.md](CHANGELOG.md) · current **v0.4.1**
+[CHANGELOG.md](CHANGELOG.md) · current **v0.5.0**
 
 | Version | Highlights |
 |---------|------------|
-| **v0.4.1** | RTK Cursor hook in install.sh (Unix), verify RTK bundle, README troubleshooting |
+| **v0.5.0** | RTK Cursor hook in install.sh (Unix), verify RTK bundle, README troubleshooting |
 | **v0.4.0** | Full-stack docs, VERSION file, README consolidation |
 | **v0.3.1** | Bundle split, hybrid routing, verify CI |
 | **v0.3.0** | 3D / R3F module |
@@ -177,4 +177,7 @@ Windows: RTK CLI + skill work; hook auto-install is Unix-only — use `rtk` pref
 | No archive after summarize | `hook-audit.log` → `preCompact` |
 | 3D black canvas | ProofScene first — [3D.md](docs/3D.md) |
 | Wrong design lane | [HYBRID.md](docs/HYBRID.md) |
+| MCP fills context / huge tool list | Keep servers out of global `~/.cursor/mcp.json` — use project `.cursor/mcp.json` — [MCP.md](docs/MCP.md) |
+| Double checkpoint after compact | v0.5+: single `session-rehydrate` only — re-run `install.ps1` |
 | Secret guard blocked write | Env vars, not literals |
+

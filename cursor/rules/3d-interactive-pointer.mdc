@@ -1,6 +1,12 @@
 ---
 description: When a repo has r3f-three installed, use the 3D implementation lane
-alwaysApply: true
+alwaysApply: false
+globs:
+  - "**/scenes/**"
+  - "**/*Scene*.tsx"
+  - "**/*Scene*.jsx"
+  - "**/design-refs/3d.md"
+  - "**/.cursor/skills/r3f-three/**"
 ---
 
 # 3D interactive (project-local)

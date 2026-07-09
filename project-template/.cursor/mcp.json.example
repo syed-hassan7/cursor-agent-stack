@@ -1,0 +1,18 @@
+{
+  "mcpServers": {
+    "n8n": {
+      "url": "https://YOUR-INSTANCE.app.n8n.cloud/mcp-server/http",
+      "headers": {
+        "Authorization": "Bearer ${env:N8N_MCP_TOKEN}"
+      }
+    },
+    "iru": {
+      "url": "https://YOUR-TENANT.connect.eu.iru.com/mcp-server/connector/kandji/tools",
+      "type": "http",
+      "headers": {
+        "X-API-Key": "${env:IRU_API_KEY}",
+        "X-MCP-Profile": "${env:IRU_MCP_PROFILE}"
+      }
+    }
+  }
+}

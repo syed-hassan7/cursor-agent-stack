@@ -5,7 +5,7 @@ const fs = require('fs');
 const path = require('path');
 const { spawnSync } = require('child_process');
 
-const MAX_FILES = 40;
+const MAX_FILES = 20;
 const MAX_GOAL_CHARS = 240;
 const MAX_USER_MSGS = 5;
 const MAX_ARCHIVES = 10;
@@ -139,7 +139,7 @@ function scrapeUserMessages(transcriptPath, limit = MAX_USER_MSGS) {
         continue;
       }
       const text = extractUserText(row);
-      if (text) messages.unshift(text.slice(0, MAX_GOAL_CHARS));
+      if (text && !isMetaUserMessage(text)) messages.unshift(text.slice(0, MAX_GOAL_CHARS));
     }
   } catch (_) {}
   return messages;
@@ -149,9 +149,13 @@ function pickGoalMessage(messages) {
   if (!messages.length) return '';
   for (let i = messages.length - 1; i >= 0; i--) {
     const m = messages[i];
+    if (isMetaUserMessage(m)) continue;
     if (m.length >= 30 && !/^If the available MCP/i.test(m)) return m;
   }
-  return messages[messages.length - 1];
+  for (let i = messages.length - 1; i >= 0; i--) {
+    if (!isMetaUserMessage(messages[i])) return messages[i];
+  }
+  return '';
 }
 
 function cleanUserQuery(text) {
@@ -161,6 +165,25 @@ function cleanUserQuery(text) {
     .replace(/\s+/g, ' ')
     .trim()
     .slice(0, MAX_GOAL_CHARS);
+}
+
+function shouldTrackFile(relPath) {
+  if (!relPath) return false;
+  const p = String(relPath).replace(/\\/g, '/');
+  if (p.includes('agent-tools/')) return false;
+  const base = p.split('/').pop() || '';
+  if (/^(sim_|debug_|repro_|inspect_)/i.test(base)) return false;
+  return true;
+}
+
+function isMetaUserMessage(text) {
+  if (!text) return true;
+  const t = String(text);
+  if (/System prompt\s+\d+/i.test(t) && /Free space/i.test(t)) return true;
+  if (/^Tool definitions\s+/i.test(t)) return true;
+  if (/^\/compact\b/i.test(t.trim())) return true;
+  if (/^\/summarize\b/i.test(t.trim())) return true;
+  return false;
 }
 
 function extractUserText(row) {
@@ -217,7 +240,7 @@ function loadState(projectRoot) {
       state.files = fileSection[1]
         .split('\n')
         .map((l) => l.replace(/^-\s*/, '').trim())
-        .filter((f) => f && f !== '(none yet)');
+        .filter((f) => f && f !== '(none yet)' && shouldTrackFile(f));
     }
   } catch (_) {}
   return state;
@@ -302,10 +325,12 @@ function updateFromToolUse(input) {
   const transcriptPath = input.transcript_path || input.transcriptPath || '';
   const userMessages = scrapeUserMessages(transcriptPath);
   const state = loadState(projectRoot);
-  if (rel && !rel.startsWith('..')) state.files.push(rel);
+  if (rel && !rel.startsWith('..') && shouldTrackFile(rel)) state.files.push(rel);
+  // drop untracked noise from prior checkpoints
+  state.files = (state.files || []).filter(shouldTrackFile);
   if (userMessages.length) state.userMessages = userMessages;
   const content = renderCheckpoint(projectRoot, state, {
-    newFiles: rel && !rel.startsWith('..') ? [rel] : [],
+    newFiles: rel && !rel.startsWith('..') && shouldTrackFile(rel) ? [rel] : [],
     userMessages,
   });
   writeCheckpoint(projectRoot, content);
@@ -357,23 +382,11 @@ function buildSessionMemoryBrief(projectRoot, opts = {}) {
   const ws = projectRoot.replace(/\\/g, '/');
   const archives = listArchives(projectRoot);
   const lines = [
-    'SESSION MEMORY — automatic (never ask user for these paths)',
-    '',
-    '| Event | What happens |',
-    '| Every edit | Rolling `.cursor/session/checkpoint.md` updated |',
-    '| `/summarize` or `/compact` | `preCompact` refreshes checkpoint + copies to `.cursor/session/archive/checkpoint-<timestamp>.md` |',
-    '| New chat / sessionStart | Latest checkpoint injected; archives on-demand only |',
-    '',
+    'SESSION MEMORY',
     `Workspace: ${ws}`,
     'Live: `.cursor/session/checkpoint.md`',
     'Archives: `.cursor/session/archive/` (newest 10, max 7 days)',
     'Audit: `.cursor/session/hook-audit.log`',
-    '',
-    'Past-session requests ("yesterday", "last compact", "what UX change broke X", "before summarize"):',
-    '1. Glob/list `.cursor/session/archive/` — pick by date or grep goal text',
-    '2. Read matching archive(s) only — never load all archives',
-    '3. Cross-check git for cited files',
-    'Do not ask user to point you at session folders.',
   ];
 
   if (opts.compactAt) {

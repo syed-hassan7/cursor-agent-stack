@@ -17,7 +17,7 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/darkyzowo">@darkyzowo</a>
+  <a href="https://github.com/syed-hassan7">@syed-hassan7</a>
 </p>
 
 ![Cursor Agent Stack banner — session memory that survives /summarize](docs/assets/banner-cursor-agent-stack.png)

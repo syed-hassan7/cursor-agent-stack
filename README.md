@@ -130,7 +130,7 @@ Details: [ARCHITECTURE.md](docs/ARCHITECTURE.md)
 ## Author
 
 <p align="center">
-  <a href="https://github.com/darkyzowo"><strong>@darkyzowo</strong></a>
+  <a href="https://github.com/syed-hassan7"><strong>@syed-hassan7</strong></a>
 </p>
 
 ## License

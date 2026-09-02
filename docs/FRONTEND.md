@@ -1,4 +1,4 @@
-See also: [documentation index](README.md) · [HYBRID.md](HYBRID.md) for UI + WebGL apps.
+See also: [documentation index](README.md) · [HYBRID.md](HYBRID.md) for UI + WebGL apps · [SITE-REMAKE.md](SITE-REMAKE.md) for live-URL marketing remakes (Phase 1 scrape before this installer).
 
 # Frontend module
 
@@ -54,6 +54,8 @@ chmod +x /path/to/cursor-agent-stack/project-template/install-frontend.sh
 
 This copies domain skills, `frontend-design-lane` rule, design-refs, `.impeccable/config.json`, and runs `npx impeccable install`.
 
+**Animation default:** Motion (`motion/react`, MIT). Skip Anime.js if Motion is already in (two engines). Kokonut OSS = copy-paste patterns; Brik.space is closed SaaS (human playground, not a build dep). Live-site remake before scaffold: [SITE-REMAKE.md](SITE-REMAKE.md).
+
 ### Skills-only (no Impeccable)
 
 ```powershell
@@ -66,6 +68,7 @@ Includes: `security-audit`, `playwright`, `ui-ux-pro-max`.
 
 1. **Reload Cursor** — third-party configs must be enabled.
 2. **`/impeccable init`** — writes `PRODUCT.md`; offers `DESIGN.md`.
+   Live-site remake: Phase 1 already wrote `PRODUCT.md`; write **revamp** `DESIGN.md` only in Phase 2 — [SITE-REMAKE.md](SITE-REMAKE.md). Incumbent look stays in `.cursor/session/<site>-current-design.md`.
 3. **Customize** `.cursor/design-refs/README.md` — swap brands for your lane.
 4. **Optional** `/impeccable document` — scan existing CSS/components into `DESIGN.md`.
 

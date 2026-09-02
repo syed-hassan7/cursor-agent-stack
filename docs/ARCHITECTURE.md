@@ -74,6 +74,7 @@ Cursor replaces chat history with a **large narrative summary** + transcript poi
 - **Archive retention** — `MAX_ARCHIVES`, `MAX_ARCHIVE_AGE_DAYS` constants
 - **Project skills** — copy domain skills into `<repo>/.cursor/skills/` only when needed
 - **MCP** — project `.cursor/mcp.json` via `scripts/mcp-link.ps1` — see [MCP.md](MCP.md)
+- **Live-site remake** — global `site-remake` skill + [SITE-REMAKE.md](SITE-REMAKE.md) (Phase 1 scrape/inventory; no scaffold)
 
 ## Frontend module (project-local)
 

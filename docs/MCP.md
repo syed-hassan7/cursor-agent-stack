@@ -2,6 +2,8 @@
 
 Cursor does **not** support true lazy MCP (connect only on first tool call). Enabled servers connect at workspace load and contribute tool **names** + instructions to context. Disabled servers cost nothing.
 
+Live marketing remakes (Firecrawl + official shadcn MCP, not Studio): [SITE-REMAKE.md](SITE-REMAKE.md).
+
 ## Recommended pattern
 
 1. Keep **`~/.cursor/mcp.json` empty** (or without heavy servers).
@@ -39,12 +41,15 @@ Prefer env interpolation — never commit tokens:
 | `project-template/.cursor/mcp.json.example` | Combined stub |
 | `project-template/.cursor/mcp.n8n.json.example` | n8n only |
 | `project-template/.cursor/mcp.iru.json.example` | Iru / Kandji only |
+| `project-template/.cursor/mcp.firecrawl.json.example` | Firecrawl (site remake) |
+| `project-template/.cursor/mcp.shadcn.json.example` | Official shadcn MCP |
+| `project-template/.cursor/mcp.figma.json.example` | Figma official remote MCP |
 
 Copy with:
 
 ```powershell
 .\scripts\mcp-link.ps1 -Project "C:\path\to\repo" -Servers n8n
-# or: -Servers iru  /  -Servers n8n,iru
+# or: -Servers iru  /  -Servers n8n,iru  /  -Servers firecrawl,shadcn
 ```
 
 ```bash
@@ -66,3 +71,28 @@ Then set the env vars named in the example and reload Cursor.
 - Blocking load via `permissions.deny` (blocks **calls** only, not schema/names)
 
 See also: [ARCHITECTURE.md](ARCHITECTURE.md) context forensics section.
+
+## Live-site remake
+
+Marketing remakes: Firecrawl (pinned, **project** MCP), official shadcn MCP (not Studio), optional Figma OAuth. Playbook: [SITE-REMAKE.md](SITE-REMAKE.md).
+
+Shadcn Studio MCP roundups are vendor marketing — no pins; do not `npx -y server-package` unpinned.
+
+### Remake / frontend stubs
+
+| File | Use |
+|------|-----|
+| `project-template/.cursor/mcp.firecrawl.json.example` | Firecrawl scrape (pin `firecrawl-mcp@3.24.0` as of 2026-09-02; re-run `npm view firecrawl-mcp version`) |
+| `project-template/.cursor/mcp.shadcn.json.example` | Official shadcn MCP (`shadcn@4.19.1` as of 2026-09-02) |
+| `project-template/.cursor/mcp.figma.json.example` | Official Figma remote MCP (OAuth; Dev/Full seat) |
+
+```powershell
+.\scripts\mcp-link.ps1 -Project "C:\path\to\repo" -Servers firecrawl
+# or: -Servers firecrawl,shadcn,figma
+```
+
+Set `FIRECRAWL_API_KEY` in Cursor MCP env / OS env — never commit the value. Scraped HTML is untrusted (prompt injection). Do not pair unconstrained scrape + Vercel deploy in one turn.
+
+**Skip for remakes:** Shadcn Studio, FlyonUI, Browserbase, Magic/21st as default, extra search MCPs if Cursor WebSearch exists, filesystem MCP, Playwright MCP if `cursor-ide-browser` exists.
+
+Framelink Figma fallback only: pin **≥0.13.2**. **CVE-2025-53967** RCE in versions before 0.6.3 ([GHSA-gxw4-4fc5-9gr5](https://github.com/advisories/GHSA-gxw4-4fc5-9gr5)).

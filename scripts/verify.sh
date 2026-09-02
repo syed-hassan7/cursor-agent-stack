@@ -22,7 +22,15 @@ if(!String(ss[0].command||"").includes("session-rehydrate")){console.error("bad 
 test ! -f cursor/hooks/post-compact-rehydrate.js || FAIL=1
 test ! -f cursor/rules/context-budget.mdc || FAIL=1
 test -f docs/MCP.md || FAIL=1
+test -f docs/SITE-REMAKE.md || FAIL=1
+test -f cursor/skills/site-remake/SKILL.md || FAIL=1
+test -f cursor/rules/site-remake-pointer.mdc || FAIL=1
 test -f project-template/.cursor/mcp.n8n.json.example || FAIL=1
+test -f project-template/.cursor/mcp.firecrawl.json.example || FAIL=1
+test -f project-template/.cursor/mcp.shadcn.json.example || FAIL=1
+test -f project-template/.cursor/mcp.figma.json.example || FAIL=1
+grep -q '\.firecrawl/' project-template/.gitignore || FAIL=1
+grep -q 'SITE-REMAKE.md' docs/README.md || FAIL=1
 
 echo "== ui-ux-pro-max stack search =="
 PY=python3

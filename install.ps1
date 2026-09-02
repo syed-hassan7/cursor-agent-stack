@@ -73,3 +73,4 @@ Write-Host "  4. Per repo: copy project-template\.cursor\session\.gitignore to .
 Write-Host "  5. After changes: .\scripts\verify.ps1"
 Write-Host "  6. Optional RTK CLI: winget install rtk-ai.rtk (Windows) — prefix noisy shell commands"
 Write-Host "  7. Web apps: install-frontend.ps1 (2D) or install-3d.ps1 (R3F) — see docs/FRONTEND.md and docs/3D.md"
+Write-Host "  8. Live-site remake (scrape first): site-remake skill — docs/SITE-REMAKE.md"

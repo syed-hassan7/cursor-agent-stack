@@ -53,15 +53,18 @@ if (-not $SkipImpeccable) {
   }
 }
 
-# 6. .gitignore hint for impeccable local config
+# 6. .gitignore hints
 $gitignore = Join-Path $ProjectRoot '.gitignore'
-$ignoreLine = '.impeccable/config.local.json'
-if (Test-Path $gitignore) {
-  if (-not (Select-String -Path $gitignore -Pattern [regex]::Escape($ignoreLine) -Quiet)) {
-    Add-Content $gitignore "`n# Impeccable local developer prefs`n$ignoreLine`n"
-    Write-Host "Added $ignoreLine to .gitignore" -ForegroundColor Green
+function Add-GitignoreLine([string]$line, [string]$comment) {
+  if (Test-Path $gitignore) {
+    if (-not (Select-String -Path $gitignore -Pattern [regex]::Escape($line) -Quiet)) {
+      Add-Content $gitignore "`n$comment`n$line`n"
+      Write-Host "Added $line to .gitignore" -ForegroundColor Green
+    }
   }
 }
+Add-GitignoreLine '.impeccable/config.local.json' '# Impeccable local developer prefs'
+Add-GitignoreLine '.firecrawl/' '# Firecrawl scrape/crawl output'
 
 Write-Host ""
 Write-Host "Next steps:" -ForegroundColor Cyan

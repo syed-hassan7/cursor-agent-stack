@@ -17,6 +17,8 @@ Then: **`/impeccable init`** → customize **`design-refs/README.md`**.
 
 Full docs: [docs/FRONTEND.md](../docs/FRONTEND.md)
 
+Live-site remake (scrape/inventory **before** this installer): [docs/SITE-REMAKE.md](../docs/SITE-REMAKE.md). Copy `.gitignore` (ignores `.firecrawl/`) into the remake repo on day one.
+
 ## 3D / WebGL (R3F module)
 
 ```powershell
@@ -67,11 +69,13 @@ Checkpoint **hooks** are global (`~/.cursor/hooks.json`). Session **files** are 
 
 ```
 project-template/
+├── .gitignore                      # .firecrawl/ + .env* (copy into remake repos)
 ├── install-frontend.ps1 / .sh      # 2D stack (Impeccable)
 ├── install-3d.ps1 / .sh            # 3D stack (R3F)
 ├── install-project-skills.ps1 / .sh
 ├── scenes/ProofScene.tsx
 ├── .cursor/
+│   ├── mcp.*.json.example          # n8n, iru, firecrawl, shadcn, figma
 │   ├── rules/frontend-design-lane.mdc
 │   ├── rules/3d-interactive-lane.mdc
 │   ├── design-refs/README.md, 3d.md

@@ -31,7 +31,15 @@ if ($ss[0].command -notmatch 'session-rehydrate') { Write-Error "sessionStart mu
 if (Test-Path "cursor\hooks\post-compact-rehydrate.js") { Write-Error "post-compact-rehydrate.js should be removed"; $Fail = 1 }
 if (Test-Path "cursor\rules\context-budget.mdc") { Write-Error "context-budget.mdc should be merged into session-memory.mdc"; $Fail = 1 }
 if (-not (Test-Path "docs\MCP.md")) { Write-Error "Missing docs/MCP.md"; $Fail = 1 }
+if (-not (Test-Path "docs\SITE-REMAKE.md")) { Write-Error "Missing docs/SITE-REMAKE.md"; $Fail = 1 }
+if (-not (Test-Path "cursor\skills\site-remake\SKILL.md")) { Write-Error "Missing site-remake skill"; $Fail = 1 }
+if (-not (Test-Path "cursor\rules\site-remake-pointer.mdc")) { Write-Error "Missing site-remake-pointer.mdc"; $Fail = 1 }
 if (-not (Test-Path "project-template\.cursor\mcp.n8n.json.example")) { Write-Error "Missing mcp.n8n.json.example"; $Fail = 1 }
+if (-not (Test-Path "project-template\.cursor\mcp.firecrawl.json.example")) { Write-Error "Missing mcp.firecrawl.json.example"; $Fail = 1 }
+if (-not (Test-Path "project-template\.cursor\mcp.shadcn.json.example")) { Write-Error "Missing mcp.shadcn.json.example"; $Fail = 1 }
+if (-not (Test-Path "project-template\.cursor\mcp.figma.json.example")) { Write-Error "Missing mcp.figma.json.example"; $Fail = 1 }
+if (-not (Select-String -Path "project-template\.gitignore" -Pattern '\.firecrawl/' -Quiet)) { Write-Error "project-template/.gitignore must ignore .firecrawl/"; $Fail = 1 }
+if (-not (Select-String -Path "docs\README.md" -Pattern 'SITE-REMAKE.md' -Quiet)) { Write-Error "docs/README.md must index SITE-REMAKE.md"; $Fail = 1 }
 
 
 Write-Host "== ui-ux-pro-max stack search =="

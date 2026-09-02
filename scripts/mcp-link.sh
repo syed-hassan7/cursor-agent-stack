@@ -7,7 +7,7 @@ PROJECT="${1:-}"
 SERVERS="${2:-}"
 
 if [[ -z "$PROJECT" || -z "$SERVERS" ]]; then
-  echo "Usage: $0 /path/to/repo n8n[,iru]" >&2
+  echo "Usage: $0 /path/to/repo n8n[,iru,firecrawl,shadcn,figma]" >&2
   exit 1
 fi
 

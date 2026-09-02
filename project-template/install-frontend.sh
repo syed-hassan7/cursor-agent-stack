@@ -35,8 +35,13 @@ else
 fi
 
 GITIGNORE="$PROJECT_ROOT/.gitignore"
-if [[ -f "$GITIGNORE" ]] && ! grep -q '.impeccable/config.local.json' "$GITIGNORE"; then
-  printf '\n# Impeccable local developer prefs\n.impeccable/config.local.json\n' >> "$GITIGNORE"
+if [[ -f "$GITIGNORE" ]]; then
+  if ! grep -q '.impeccable/config.local.json' "$GITIGNORE"; then
+    printf '\n# Impeccable local developer prefs\n.impeccable/config.local.json\n' >> "$GITIGNORE"
+  fi
+  if ! grep -q '\.firecrawl/' "$GITIGNORE"; then
+    printf '\n# Firecrawl scrape/crawl output\n.firecrawl/\n' >> "$GITIGNORE"
+  fi
 fi
 
 echo ""

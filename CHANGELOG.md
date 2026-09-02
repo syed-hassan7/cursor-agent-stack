@@ -2,6 +2,23 @@
 
 All notable releases of [cursor-agent-stack](https://github.com/darkyzowo/cursor-agent-stack).
 
+## [v0.6.0] — 2026-09-02
+
+### Added
+- [docs/SITE-REMAKE.md](docs/SITE-REMAKE.md) — Phase 1 live-site remake playbook (map/scrape/inventory; no scaffold)
+- Global **`site-remake`** skill + glob-gated `site-remake-pointer.mdc` so new sessions load the playbook without a prior MCP audit thread
+- Project MCP stubs: Firecrawl (pinned), official shadcn MCP, Figma OAuth — `mcp-link` `-Servers firecrawl,shadcn,figma`
+- `project-template/.gitignore` ignores `.firecrawl/` and `.env*`
+
+### Changed
+- [MCP.md](docs/MCP.md) / [FRONTEND.md](docs/FRONTEND.md): pointers + remake MCP/motion defaults (Motion not Anime.js; skip Studio/Browserbase/unpinned npx)
+- Official shadcn MCP is the adopt path — Shadcn Studio blogs are vendor marketing, not a spec
+
+### Notes
+- Firecrawl for remakes = **project** `.cursor/mcp.json` (Path A+C). Path B (SDK in the marketing product) is out of scope unless the product is a scraper
+- Pin verified 2026-09-02: `firecrawl-mcp@3.24.0` (`3.24.1` not published), `shadcn@4.19.1`. Re-run `npm view` before install
+- Framelink Figma fallback: pin ≥0.13.2; CVE-2025-53967 RCE in versions before 0.6.3
+
 ## [v0.5.0] — 2026-07-09
 
 ### Fixed

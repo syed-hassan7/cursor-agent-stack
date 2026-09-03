@@ -12,7 +12,7 @@ alwaysApply: false
 
 # 3D interactive lane
 
-This repo uses the **Cursor Agent Stack 3D module**: r3f-three (implementation + proof gate) + ui-ux-pro-max `react-three-fiber` stack + `design-refs/3d.md`.
+This repo uses the **Cursor Agent Stack 3D module**: r3f-three (implementation + proof gate) + ui-ux-pro-max `react-three-fiber` stack + `design-refs/3d.md` + [design resource library](../design-refs/library.md).
 
 Apply when editing WebGL / R3F scenes — not for API-only or pure 2D Tailwind work.
 
@@ -22,15 +22,24 @@ Apply when editing WebGL / R3F scenes — not for API-only or pure 2D Tailwind w
 2. Run stack lookup when unsure:  
    `python .cursor/skills/ui-ux-pro-max/scripts/search.py "<topic>" --stack react-three-fiber`
 3. Inspiration: `.cursor/design-refs/3d.md` — one reference lane per task.
+4. Adopt / reject (Spline iframe, blender-mcp, postprocessing): `.cursor/design-refs/library.md`.
 
 ## Mandatory order
 
 1. **Proof** — box/sphere + lights + `OrbitControls` (see `scenes/ProofScene.tsx`)
 2. **Stage** — grid, ground, `Environment`
 3. **Content** — GLTF, placement
-4. **Polish** — postprocessing only after smooth proof
+4. **Tune** — **leva** (dev-only). Hardcode values, then strip leva from the bundle.
+5. **Polish** — `@react-three/postprocessing` only after a smooth ~60fps proof
+6. **Physics** — `@react-three/rapier` only when idle-yaw / parallax is not enough
 
 Never skip proof to build an "environment".
+
+## blender-mcp
+
+**Pre-authorized escalation, not a default.** Use when a parametric Three.js mesh hits its ceiling. Needs the Blender app + addon. Enable via `mcp-link … blender`, then **disable the server when idle**. Do not leave it running unattended.
+
+Spline as a hero **iframe** is rejected (not an owned scene). Product spin / GLB viewer can still use model-viewer — not a full R3F scene.
 
 ## Impeccable boundary
 

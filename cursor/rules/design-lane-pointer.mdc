@@ -1,0 +1,25 @@
+---
+description: Design sequence + resource library — UI, remake, scroll, hybrid 3D
+alwaysApply: false
+globs:
+  - "**/PRODUCT.md"
+  - "**/DESIGN.md"
+  - "**/DESIGN-RESOURCES.md"
+  - "**/src/**/*.{tsx,jsx,css,scss}"
+  - "**/app/**/*.{tsx,jsx,css}"
+  - "**/components/**/*.{tsx,jsx,css}"
+  - "**/.cursor/design-refs/**"
+  - "**/.impeccable/**"
+  - "**/scenes/**"
+---
+
+# Design lane (pointer)
+
+When this workspace is doing **UI, a live-site remake, scroll choreography, or hybrid 2D+WebGL**:
+
+1. Read the **`design-lane`** skill, then the library [DESIGN-RESOURCES.md](https://github.com/syed-hassan7/cursor-agent-stack/blob/master/docs/DESIGN-RESOURCES.md) (or `.cursor/design-refs/library.md` in a product repo).
+2. Follow the sequence: Impeccable context → named extreme → lookup → code → real screenshot. Do not start at ui-ux-pro-max or Superdesign.
+3. Do not re-open rejected connectors (Relume, Spline-as-hero, Shadcn Studio, …) without new evidence.
+4. New machine: [NEW-DEVICE.md](https://github.com/syed-hassan7/cursor-agent-stack/blob/master/docs/NEW-DEVICE.md).
+
+If this is a backend-only change, this rule is inert.

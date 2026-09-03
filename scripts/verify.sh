@@ -23,14 +23,24 @@ test ! -f cursor/hooks/post-compact-rehydrate.js || FAIL=1
 test ! -f cursor/rules/context-budget.mdc || FAIL=1
 test -f docs/MCP.md || FAIL=1
 test -f docs/SITE-REMAKE.md || FAIL=1
+test -f docs/DESIGN-RESOURCES.md || FAIL=1
+test -f docs/NEW-DEVICE.md || FAIL=1
 test -f cursor/skills/site-remake/SKILL.md || FAIL=1
+test -f cursor/skills/design-lane/SKILL.md || FAIL=1
 test -f cursor/rules/site-remake-pointer.mdc || FAIL=1
+test -f cursor/rules/design-lane-pointer.mdc || FAIL=1
 test -f project-template/.cursor/mcp.n8n.json.example || FAIL=1
 test -f project-template/.cursor/mcp.firecrawl.json.example || FAIL=1
 test -f project-template/.cursor/mcp.shadcn.json.example || FAIL=1
 test -f project-template/.cursor/mcp.figma.json.example || FAIL=1
+test -f project-template/.cursor/mcp.blender.json.example || FAIL=1
+test -f project-template/.cursor/design-refs/library.md || FAIL=1
 grep -q '\.firecrawl/' project-template/.gitignore || FAIL=1
 grep -q 'SITE-REMAKE.md' docs/README.md || FAIL=1
+grep -q 'DESIGN-RESOURCES.md' docs/README.md || FAIL=1
+grep -q 'NEW-DEVICE.md' docs/README.md || FAIL=1
+grep -q 'named extreme' project-template/.cursor/rules/frontend-design-lane.mdc || FAIL=1
+grep -q 'syed-hassan7/cursor-agent-stack' README.md || FAIL=1
 
 echo "== ui-ux-pro-max stack search =="
 PY=python3

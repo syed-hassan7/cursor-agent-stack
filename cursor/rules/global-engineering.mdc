@@ -35,11 +35,12 @@ Add your repos here — stack, deploy target, naming quirks. Example:
 | **Context** | Budget mode at 50%+; compact + checkpoint + archives | `session-memory` rule + hooks |
 | **Safety** | Secret write block | `secret-guard` hook |
 | **Frontend** | Impeccable (2D) or r3f-three (3D) when project has them | `frontend-design-pointer` + `3d-interactive-pointer` rules + project install |
+| **Design lane** | Sequence + adopt/reject library — do not re-research tools | `design-lane` skill + `docs/DESIGN-RESOURCES.md` / `.cursor/design-refs/library.md` |
 | **Site remake** | Live-URL marketing rebuild — scrape/inventory first | `site-remake` skill + `docs/SITE-REMAKE.md` |
 
 ## Frontend (project-local)
 
-Web app repos: `install-frontend.ps1` (Impeccable + ui-ux-pro-max). 3D/WebGL repos: `install-3d.ps1` (r3f-three). Not global. See `docs/FRONTEND.md` and `docs/3D.md`. Live marketing remake (scrape incumbent before scaffold): **site-remake** skill — `docs/SITE-REMAKE.md`.
+Web app repos: `install-frontend.ps1` (Impeccable + ui-ux-pro-max). 3D/WebGL repos: `install-3d.ps1` (r3f-three). Not global. See `docs/FRONTEND.md` and `docs/3D.md`. Design sequence + library: **design-lane** skill — `docs/DESIGN-RESOURCES.md`. New machine: `docs/NEW-DEVICE.md`. Live marketing remake (scrape incumbent before scaffold): **site-remake** skill — `docs/SITE-REMAKE.md`.
 
 ## Security invariants
 

@@ -106,7 +106,7 @@ Inspiration: `.cursor/design-refs/3d.md`
 
 ## Hybrid repos
 
-Impeccable for 2D UI only. See [HYBRID.md](https://github.com/darkyzowo/cursor-agent-stack/blob/master/docs/HYBRID.md).
+Impeccable for 2D UI only. See [HYBRID.md](https://github.com/syed-hassan7/cursor-agent-stack/blob/master/docs/HYBRID.md). blender-mcp is an escalation — library: `.cursor/design-refs/library.md`.
 
 ## Milestones
 

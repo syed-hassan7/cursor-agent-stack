@@ -32,14 +32,24 @@ if (Test-Path "cursor\hooks\post-compact-rehydrate.js") { Write-Error "post-comp
 if (Test-Path "cursor\rules\context-budget.mdc") { Write-Error "context-budget.mdc should be merged into session-memory.mdc"; $Fail = 1 }
 if (-not (Test-Path "docs\MCP.md")) { Write-Error "Missing docs/MCP.md"; $Fail = 1 }
 if (-not (Test-Path "docs\SITE-REMAKE.md")) { Write-Error "Missing docs/SITE-REMAKE.md"; $Fail = 1 }
+if (-not (Test-Path "docs\DESIGN-RESOURCES.md")) { Write-Error "Missing docs/DESIGN-RESOURCES.md"; $Fail = 1 }
+if (-not (Test-Path "docs\NEW-DEVICE.md")) { Write-Error "Missing docs/NEW-DEVICE.md"; $Fail = 1 }
 if (-not (Test-Path "cursor\skills\site-remake\SKILL.md")) { Write-Error "Missing site-remake skill"; $Fail = 1 }
+if (-not (Test-Path "cursor\skills\design-lane\SKILL.md")) { Write-Error "Missing design-lane skill"; $Fail = 1 }
 if (-not (Test-Path "cursor\rules\site-remake-pointer.mdc")) { Write-Error "Missing site-remake-pointer.mdc"; $Fail = 1 }
+if (-not (Test-Path "cursor\rules\design-lane-pointer.mdc")) { Write-Error "Missing design-lane-pointer.mdc"; $Fail = 1 }
 if (-not (Test-Path "project-template\.cursor\mcp.n8n.json.example")) { Write-Error "Missing mcp.n8n.json.example"; $Fail = 1 }
 if (-not (Test-Path "project-template\.cursor\mcp.firecrawl.json.example")) { Write-Error "Missing mcp.firecrawl.json.example"; $Fail = 1 }
 if (-not (Test-Path "project-template\.cursor\mcp.shadcn.json.example")) { Write-Error "Missing mcp.shadcn.json.example"; $Fail = 1 }
 if (-not (Test-Path "project-template\.cursor\mcp.figma.json.example")) { Write-Error "Missing mcp.figma.json.example"; $Fail = 1 }
+if (-not (Test-Path "project-template\.cursor\mcp.blender.json.example")) { Write-Error "Missing mcp.blender.json.example"; $Fail = 1 }
+if (-not (Test-Path "project-template\.cursor\design-refs\library.md")) { Write-Error "Missing design-refs/library.md"; $Fail = 1 }
 if (-not (Select-String -Path "project-template\.gitignore" -Pattern '\.firecrawl/' -Quiet)) { Write-Error "project-template/.gitignore must ignore .firecrawl/"; $Fail = 1 }
 if (-not (Select-String -Path "docs\README.md" -Pattern 'SITE-REMAKE.md' -Quiet)) { Write-Error "docs/README.md must index SITE-REMAKE.md"; $Fail = 1 }
+if (-not (Select-String -Path "docs\README.md" -Pattern 'DESIGN-RESOURCES.md' -Quiet)) { Write-Error "docs/README.md must index DESIGN-RESOURCES.md"; $Fail = 1 }
+if (-not (Select-String -Path "docs\README.md" -Pattern 'NEW-DEVICE.md' -Quiet)) { Write-Error "docs/README.md must index NEW-DEVICE.md"; $Fail = 1 }
+if (-not (Select-String -Path "project-template\.cursor\rules\frontend-design-lane.mdc" -Pattern 'named extreme' -Quiet)) { Write-Error "frontend-design-lane.mdc must require a named extreme"; $Fail = 1 }
+if (-not (Select-String -Path "README.md" -Pattern 'syed-hassan7/cursor-agent-stack' -Quiet)) { Write-Error "README clone URL must be syed-hassan7/cursor-agent-stack"; $Fail = 1 }
 
 
 Write-Host "== ui-ux-pro-max stack search =="

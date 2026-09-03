@@ -16,9 +16,10 @@ globs:
 When the open workspace contains **`.cursor/skills/impeccable/`**:
 
 1. Read **`PRODUCT.md`** and **`DESIGN.md`** at the project root before UI edits (run **`/impeccable init`** if missing).
-2. Prefer **`/impeccable`** commands for design, critique, audit, polish, typeset — not generic "make it prettier" prose.
-3. Follow **`.cursor/rules/frontend-design-lane.mdc`** when present.
-4. Use **`.cursor/design-refs/README.md`** for inspiration — one reference lane per task.
+2. Follow the **design-lane** skill: named extreme **before** ui-ux-pro-max / Superdesign. Library: `.cursor/design-refs/library.md`.
+3. Prefer **`/impeccable`** commands for design, critique, audit, polish, typeset — not generic "make it prettier" prose.
+4. Follow **`.cursor/rules/frontend-design-lane.mdc`** when present.
+5. Use **`.cursor/design-refs/README.md`** for 3–5 brand refs — one reference lane per task.
 
 ## Hybrid repos (UI + WebGL)
 
@@ -26,8 +27,8 @@ If **`.cursor/skills/r3f-three/`** is also installed:
 
 - **2D surfaces** (`app/`, `components/`, Tailwind) → this rule + Impeccable.
 - **3D surfaces** (`scenes/`, `*Scene*.tsx`, R3F imports) → **`3d-interactive-lane.mdc`** + r3f-three skill. Do not `/impeccable polish` WebGL files.
-- See [HYBRID.md](https://github.com/darkyzowo/cursor-agent-stack/blob/master/docs/HYBRID.md).
+- See [HYBRID.md](https://github.com/syed-hassan7/cursor-agent-stack/blob/master/docs/HYBRID.md).
 
-If Impeccable is not installed, this rule is inert. Install: [docs/FRONTEND.md](https://github.com/darkyzowo/cursor-agent-stack/blob/master/docs/FRONTEND.md).
+If Impeccable is not installed, this rule is inert. Install: [docs/FRONTEND.md](https://github.com/syed-hassan7/cursor-agent-stack/blob/master/docs/FRONTEND.md).
 
 Do not duplicate checkpoint hooks in project `.cursor/hooks.json` — session memory hooks live in global `~/.cursor/hooks.json`.

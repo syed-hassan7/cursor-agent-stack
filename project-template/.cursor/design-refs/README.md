@@ -18,10 +18,11 @@ Swap rows for your product lane (e.g. marketing site → add **vercel**, **frame
 
 1. **Strategic direction** → `PRODUCT.md` at repo root (Impeccable owns this).
 2. **On-brand tokens** → `DESIGN.md` at repo root first.
-3. **Inspiration pull** → pick **one** reference that matches the surface (tables → stripe, sidebar → supabase, empty states → notion).
-4. **Lookup tables** → `ui-ux-pro-max` skill for palette/stack CSV search when exploring alternatives.
+3. **Adopt / reject** → **[library.md](library.md)** — do not re-research Relume, Spline, Studio, etc.
+4. **Inspiration pull** → pick **one** reference that matches the surface (tables → stripe, sidebar → supabase, empty states → notion).
+5. **Lookup tables** → `ui-ux-pro-max` skill for palette/stack CSV search **after** a named extreme.
 
-Do not mash all references into one screen.
+Do not mash all references into one screen. Keep **3–5 brand refs** here; the library is separate.
 
 ## 3D / WebGL
 

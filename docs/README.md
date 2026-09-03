@@ -4,6 +4,8 @@
 |-----|---------|
 | [ARCHITECTURE.md](ARCHITECTURE.md) | Hooks, rules, context forensics, global vs project-local |
 | [MCP.md](MCP.md) | Project-scoped MCP — avoid always-on global servers |
+| [DESIGN-RESOURCES.md](DESIGN-RESOURCES.md) | Adopt / reject library — do not re-research on a new device |
+| [NEW-DEVICE.md](NEW-DEVICE.md) | 30-minute pickup on another machine / new Cursor session |
 | [FRONTEND.md](FRONTEND.md) | 2D web app module (Impeccable + ui-ux-pro-max) |
 | [3D.md](3D.md) | WebGL / R3F module (r3f-three + ProofScene gate) |
 | [HYBRID.md](HYBRID.md) | Dashboard + 3D hero — lane routing |

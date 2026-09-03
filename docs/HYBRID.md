@@ -2,6 +2,8 @@
 
 When a repo has **both** Impeccable (2D) and r3f-three (3D) installed.
 
+Design sequence and adopt / reject list still apply: [DESIGN-RESOURCES.md](DESIGN-RESOURCES.md). File routing below does not change that.
+
 ## Install order
 
 ```powershell
@@ -15,8 +17,8 @@ Either order OK. Both add `ui-ux-pro-max` — second install refreshes same skil
 
 | File pattern | Lane | Tools |
 |--------------|------|-------|
-| `app/**`, `components/**`, `*.css`, Tailwind | 2D | Impeccable, `frontend-design-lane.mdc`, design-refs/README |
-| `scenes/**`, `*Scene*.tsx`, `@react-three/*` imports | 3D | r3f-three skill, `3d-interactive-lane.mdc`, design-refs/3d.md |
+| `app/**`, `components/**`, `*.css`, Tailwind | 2D | Impeccable, `frontend-design-lane.mdc`, design-refs/README + `library.md` |
+| `scenes/**`, `*Scene*.tsx`, `@react-three/*` imports | 3D | r3f-three skill, `3d-interactive-lane.mdc`, design-refs/3d.md + `library.md` |
 | Shared `DESIGN.md` | Both | 2D tokens in main sections; optional **3D** section for camera/light/material |
 
 ## Do not
@@ -24,6 +26,8 @@ Either order OK. Both add `ui-ux-pro-max` — second install refreshes same skil
 - Run `/impeccable polish` on WebGL scene files expecting CSS fixes
 - Apply Impeccable purple-gradient detectors to R3F canvas code
 - Start 3D work without ProofScene milestone (see docs/3D.md)
+- Enable blender-mcp by default (escalation only — disable when idle)
+- Embed Spline as the owned hero scene
 
 ## Verify hybrid setup
 
@@ -38,3 +42,5 @@ Test-Path .cursor\rules\3d-interactive-lane.mdc
 
 - [FRONTEND.md](FRONTEND.md) — 2D module
 - [3D.md](3D.md) — WebGL module
+- [DESIGN-RESOURCES.md](DESIGN-RESOURCES.md) — library
+- [NEW-DEVICE.md](NEW-DEVICE.md) — another machine

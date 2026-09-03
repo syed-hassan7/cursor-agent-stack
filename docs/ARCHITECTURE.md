@@ -75,6 +75,7 @@ Cursor replaces chat history with a **large narrative summary** + transcript poi
 - **Project skills** — copy domain skills into `<repo>/.cursor/skills/` only when needed
 - **MCP** — project `.cursor/mcp.json` via `scripts/mcp-link.ps1` — see [MCP.md](MCP.md)
 - **Live-site remake** — global `site-remake` skill + [SITE-REMAKE.md](SITE-REMAKE.md) (Phase 1 scrape/inventory; no scaffold)
+- **Design lane** — global `design-lane` skill + glob-gated `design-lane-pointer.mdc` + [DESIGN-RESOURCES.md](DESIGN-RESOURCES.md). Library is **docs + copied `design-refs/library.md`**, not alwaysApply prose. New machine: [NEW-DEVICE.md](NEW-DEVICE.md).
 
 ## Frontend module (project-local)
 
@@ -91,6 +92,7 @@ Project <repo>/.cursor/
   skills/ui-ux-pro-max/
   rules/frontend-design-lane.mdc
   design-refs/README.md
+  design-refs/library.md          ← copy of DESIGN-RESOURCES.md (install-frontend / install-3d)
 
 Project root
   PRODUCT.md, DESIGN.md           ← /impeccable init
@@ -108,6 +110,7 @@ Project <repo>/.cursor/
   skills/r3f-three/
   rules/3d-interactive-lane.mdc
   design-refs/3d.md
+  design-refs/library.md   (also copied by install-3d)
 
 Project root
   scenes/ProofScene.tsx   (optional template from install-3d)
@@ -116,6 +119,8 @@ Project root
 Global pointers (glob-gated):
 - `frontend-design-pointer.mdc` → Impeccable when `.cursor/skills/impeccable/` exists
 - `3d-interactive-pointer.mdc` → r3f-three when `.cursor/skills/r3f-three/` exists
+- `design-lane-pointer.mdc` → sequence + library on UI / DESIGN.md / scenes / design-refs
+- `site-remake-pointer.mdc` → live-URL remake playbook
 
 Hybrid lane routing: [HYBRID.md](HYBRID.md).
 

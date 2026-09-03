@@ -44,16 +44,19 @@ Prefer env interpolation — never commit tokens:
 | `project-template/.cursor/mcp.firecrawl.json.example` | Firecrawl (site remake) |
 | `project-template/.cursor/mcp.shadcn.json.example` | Official shadcn MCP |
 | `project-template/.cursor/mcp.figma.json.example` | Figma official remote MCP |
+| `project-template/.cursor/mcp.blender.json.example` | blender-mcp (**escalation**, not a default) |
 
 Copy with:
 
 ```powershell
 .\scripts\mcp-link.ps1 -Project "C:\path\to\repo" -Servers n8n
 # or: -Servers iru  /  -Servers n8n,iru  /  -Servers firecrawl,shadcn
+# blender only when a parametric mesh hit a ceiling: -Servers blender
 ```
 
 ```bash
 ./scripts/mcp-link.sh /path/to/repo n8n
+# blender (escalation): ./scripts/mcp-link.sh /path/to/repo blender
 ```
 
 Then set the env vars named in the example and reload Cursor.
@@ -96,3 +99,23 @@ Set `FIRECRAWL_API_KEY` in Cursor MCP env / OS env — never commit the value. S
 **Skip for remakes:** Shadcn Studio, FlyonUI, Browserbase, Magic/21st as default, extra search MCPs if Cursor WebSearch exists, filesystem MCP, Playwright MCP if `cursor-ide-browser` exists.
 
 Framelink Figma fallback only: pin **≥0.13.2**. **CVE-2025-53967** RCE in versions before 0.6.3 ([GHSA-gxw4-4fc5-9gr5](https://github.com/advisories/GHSA-gxw4-4fc5-9gr5)).
+
+## blender-mcp (escalation, not a default)
+
+[blender-mcp](https://github.com/ahujasid/blender-mcp) lets the agent drive a running Blender instance and export glTF. It is **pre-authorized as an escalation** when a parametric Three.js mesh hits its ceiling — not part of `install-frontend` / `install-3d`, and not in the combined `mcp.json.example`.
+
+```powershell
+.\scripts\mcp-link.ps1 -Project "C:\path\to\repo" -Servers blender
+```
+
+Stub: `project-template/.cursor/mcp.blender.json.example` (`uvx blender-mcp`).
+
+| Constraint | What to do |
+|------------|------------|
+| Needs the **Blender app** + addon | Human installs those. The stub only starts the MCP process. |
+| Do not leave it running | Disable in Cursor MCP / `agent mcp disable blender` when idle. |
+| Windows GUI PATH | Cursor's GUI often cannot see `uvx`. Confirm in a terminal: `where.exe uvx`. If GUI fails, set `"command": "cmd"` and `"args": ["/c", "uvx", "blender-mcp"]`, or an absolute path to `uvx.exe`. |
+| Python-exec bridge | Treat as high privilege. Do not run unattended. |
+| Spline iframe | Still rejected as an owned hero. blender-mcp is the owned-scene path, not an embed. |
+
+Full adopt / reject: [DESIGN-RESOURCES.md](DESIGN-RESOURCES.md). New machine: [NEW-DEVICE.md](NEW-DEVICE.md).

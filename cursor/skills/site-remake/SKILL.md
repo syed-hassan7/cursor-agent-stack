@@ -29,6 +29,7 @@ Map / scrape / inventory. **No** Next scaffold, **no** `install-frontend` / `ins
 - No login. No fake-PII form submits. Cookie wall → browser or Firecrawl interact, then **stop**.
 - Firecrawl = **project** `.cursor/mcp.json`, not global `~/.cursor/mcp.json`. Path A+C. Not Path B unless the product is a scraper.
 - Pin MCP packages (`npm view … version`). Do not `npx -y pkg@latest`. Official shadcn MCP — not Shadcn Studio. Skip Studio, FlyonUI, Browserbase, extra search MCPs, filesystem MCP, Playwright MCP if IDE browser exists.
+- Do not re-open Relume, Spline-as-hero, or other rows in the **design-lane** library. Resolve DESIGN-RESOURCES.md the same way as the design-lane skill (stack docs → `.cursor/design-refs/library.md` → GitHub). Sequence: Impeccable → named extreme → lookup. Do not scaffold in Phase 1.
 
 ## Defaults (install in Phase 2)
 

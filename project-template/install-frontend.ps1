@@ -70,8 +70,9 @@ Write-Host ""
 Write-Host "Next steps:" -ForegroundColor Cyan
 Write-Host "  1. Reload Cursor (enable third-party agent configs if not already)"
 Write-Host "  2. Run /impeccable init  — writes PRODUCT.md (+ optional DESIGN.md)"
-Write-Host "  3. Customize .cursor/design-refs/README.md for your product lane"
+Write-Host "  3. Customize .cursor/design-refs/README.md (3-5 brands). Library is design-refs/library.md"
 Write-Host "  4. 3D hero too? Also run install-3d.ps1 — see docs/HYBRID.md"
+Write-Host "  4b. Sequence: named extreme before ui-ux-pro-max — design-lane skill / docs/DESIGN-RESOURCES.md"
 Write-Host "  5. For /impeccable live: copy .impeccable/live/config.* template for your framework"
 Write-Host ""
 Write-Host "Do NOT add checkpoint hooks to .cursor/hooks.json — they live in ~/.cursor/hooks.json" -ForegroundColor DarkGray

@@ -17,7 +17,8 @@ New-Item -ItemType Directory -Force -Path (Join-Path $CursorDir 'rules') | Out-N
 Copy-Item -Force (Join-Path $TemplateRoot '.cursor\rules\3d-interactive-lane.mdc') (Join-Path $CursorDir 'rules\3d-interactive-lane.mdc')
 New-Item -ItemType Directory -Force -Path (Join-Path $CursorDir 'design-refs') | Out-Null
 Copy-Item -Force (Join-Path $TemplateRoot '.cursor\design-refs\3d.md') (Join-Path $CursorDir 'design-refs\3d.md')
-Write-Host "Installed 3d-interactive-lane rule + design-refs/3d.md" -ForegroundColor Green
+Copy-Item -Force (Join-Path $TemplateRoot '.cursor\design-refs\library.md') (Join-Path $CursorDir 'design-refs\library.md')
+Write-Host "Installed 3d-interactive-lane rule + design-refs/3d.md + library.md" -ForegroundColor Green
 
 $sessionDir = Join-Path $CursorDir 'session'
 New-Item -ItemType Directory -Force -Path $sessionDir | Out-Null
@@ -40,4 +41,5 @@ Write-Host "  1. Reload Cursor (third-party agent configs enabled)"
 Write-Host "  2. npm i three @react-three/fiber @react-three/drei"
 Write-Host "  3. Render ProofScene before any environment work"
 Write-Host "  4. Dashboard + 3D? Also run install-frontend.ps1 — docs/HYBRID.md"
+Write-Host "  5. blender-mcp is an escalation, not a default — docs/MCP.md + docs/DESIGN-RESOURCES.md"
 Write-Host "  Docs: docs/3D.md in cursor-agent-stack repo"

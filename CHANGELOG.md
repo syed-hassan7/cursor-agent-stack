@@ -1,6 +1,24 @@
 # Changelog
 
-All notable releases of [cursor-agent-stack](https://github.com/darkyzowo/cursor-agent-stack).
+All notable releases of [cursor-agent-stack](https://github.com/syed-hassan7/cursor-agent-stack).
+
+## [v0.7.0] — 2026-09-03
+
+### Added
+- [docs/DESIGN-RESOURCES.md](docs/DESIGN-RESOURCES.md) — portable adopt / reject library (scroll-craft, react-bits, transitions-dev, Motion, blender-mcp escalation, Superdesign critique-only)
+- [docs/NEW-DEVICE.md](docs/NEW-DEVICE.md) — 30-minute pickup on another machine / new Cursor session
+- Global **`design-lane`** skill + glob-gated `design-lane-pointer.mdc` so a new chat loads the sequence (Impeccable → named extreme → lookup → screenshot) without a prior research thread
+- Project copy at `.cursor/design-refs/library.md` (install-frontend and install-3d)
+- `mcp.blender.json.example` — blender-mcp as **escalation**, not a default (`mcp-link -Servers blender`)
+
+### Changed
+- Frontend / 3D lane rules: do not invert lookup before a named extreme; leva then strip; postprocessing after ~60fps; rapier only when needed
+- README clone URL `darkyzowo` → `syed-hassan7`; Relume / Spline-as-hero / Shadcn Studio remain rejected
+
+### Notes
+- Do not vendor scroll-craft or the Owl-Listener 241-skill pack into `~/.cursor`. Copy scroll-craft into a **project** skills folder when the page is scroll-driven.
+- Superdesign stays a Marketplace plugin — critique / palette only; never overwrite `DESIGN.md`.
+- Firecrawl stays **project** `.cursor/mcp.json`. blender-mcp: disable when idle; Windows GUI often needs `cmd /c uvx blender-mcp`.
 
 ## [v0.6.0] — 2026-09-02
 

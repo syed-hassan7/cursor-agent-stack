@@ -13,7 +13,7 @@ Copy or run installers from here into **individual repos**. Nothing in this fold
 chmod +x ./install-frontend.sh && ./install-frontend.sh
 ```
 
-Then: **`/impeccable init`** → customize **`design-refs/README.md`**.
+Then: **`/impeccable init`** → customize **`design-refs/README.md`** (3–5 brands). Adopt/reject list: **`design-refs/library.md`**.
 
 Full docs: [docs/FRONTEND.md](../docs/FRONTEND.md)
 
@@ -75,10 +75,10 @@ project-template/
 ├── install-project-skills.ps1 / .sh
 ├── scenes/ProofScene.tsx
 ├── .cursor/
-│   ├── mcp.*.json.example          # n8n, iru, firecrawl, shadcn, figma
+│   ├── mcp.*.json.example          # n8n, iru, firecrawl, shadcn, figma, blender (escalation)
 │   ├── rules/frontend-design-lane.mdc
 │   ├── rules/3d-interactive-lane.mdc
-│   ├── design-refs/README.md, 3d.md
+│   ├── design-refs/README.md, 3d.md, library.md
 │   └── skills/                     # r3f-three, ui-ux-pro-max, ...
 └── .impeccable/                    # frontend module only
 ```

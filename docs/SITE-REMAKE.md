@@ -1,4 +1,4 @@
-See also: [documentation index](README.md) · [MCP.md](MCP.md) · [FRONTEND.md](FRONTEND.md) · [3D.md](3D.md)
+See also: [documentation index](README.md) · [MCP.md](MCP.md) · [FRONTEND.md](FRONTEND.md) · [3D.md](3D.md) · [DESIGN-RESOURCES.md](DESIGN-RESOURCES.md) (adopt / reject — do not re-audit Relume/Studio) · [NEW-DEVICE.md](NEW-DEVICE.md)
 
 # Live-site remake (Phase 1)
 

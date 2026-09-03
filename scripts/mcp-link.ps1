@@ -14,7 +14,7 @@ $DestDir = Join-Path $Project '.cursor'
 $Dest = Join-Path $DestDir 'mcp.json'
 
 $wanted = $Servers.Split(',') | ForEach-Object { $_.Trim().ToLower() } | Where-Object { $_ }
-if (-not $wanted.Count) { throw 'Specify -Servers e.g. n8n or n8n,iru or firecrawl,shadcn' }
+if (-not $wanted.Count) { throw 'Specify -Servers e.g. n8n or n8n,iru or firecrawl,shadcn or blender' }
 
 New-Item -ItemType Directory -Force -Path $DestDir | Out-Null
 

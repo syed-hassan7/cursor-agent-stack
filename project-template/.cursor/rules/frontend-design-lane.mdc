@@ -1,5 +1,5 @@
 ---
-description: UI/UX work — Impeccable commands, design context, and reference library
+description: UI/UX work — Impeccable first, named extreme, then lookup and a real screenshot
 globs:
   - app/**/*.tsx
   - app/**/*.css
@@ -12,16 +12,24 @@ alwaysApply: false
 
 # Frontend design lane
 
-This repo uses the **Cursor Agent Stack frontend module**: Impeccable (direction + enforcement) + ui-ux-pro-max (lookup) + curated design references.
+This repo uses the **Cursor Agent Stack frontend module**: Impeccable (direction + enforcement) + ui-ux-pro-max (lookup) + curated design references + [design resource library](../design-refs/library.md).
 
 Apply when editing UI, CSS, or layout — not for API/backend-only changes.
 
-## Before UI work
+## Sequence (do not invert)
 
-1. Read root **`PRODUCT.md`** (strategic) and **`DESIGN.md`** (visual tokens) when present.
-2. If missing, run **`/impeccable init`** once — do not invent design context from scratch.
-3. For `/impeccable` commands, follow `.cursor/skills/impeccable/SKILL.md` (run `context.mjs` once per session).
-4. For inspiration, see **`.cursor/design-refs/README.md`** — pick **one** reference lane per task.
+Root cause of generic UI: lookup (`ui-ux-pro-max`, Superdesign) ran before Impeccable committed a world.
+
+1. Read root **`PRODUCT.md`** and **`DESIGN.md`**. If missing, **`/impeccable init`** (or `shape`) once — do not invent context.
+2. **Named extreme** — write purpose, tone, constraints, and **one** direction before the first CSS rule. Not a blend. Default away from Inter / Roboto / Arial / Space Grotesk unless the brief wants restraint. Reference images beat vibe adjectives.
+3. Then **ui-ux-pro-max** / one awesome-design-md brand / Superdesign — **against** that extreme.
+4. Components: official shadcn MCP, then **react-bits** for personality motion, then hand-roll.
+5. Motion: **Motion** (`motion/react`). **transitions-dev** for overlays / page transitions. **scroll-craft** for a scroll-driven story (copy the skill into `.cursor/skills/scroll-craft/` — Cursor does not load Claude's plugin marketplace).
+6. **Verify** with a real 1× screenshot of the whole view vs before. Source review is not visual proof. Native `<select>` popups are invisible to tab screenshots — do not claim them verified.
+7. Same element rejected **twice** → stop polishing execution; ask if the concept is wrong.
+8. Open creative briefs: do not label the conservative option "(Recommended)."
+
+Library (adopt / reject, including Relume / Spline / Studio): **`.cursor/design-refs/library.md`**.
 
 ## Command shortcuts
 
@@ -33,6 +41,8 @@ Apply when editing UI, CSS, or layout — not for API/backend-only changes.
 | Typography pass | `/impeccable typeset` |
 | Pre-ship cleanup | `/impeccable polish <target>` |
 | Browser variants | `/impeccable live` (dev server + CSP setup) |
+| Amplify bland | `/impeccable bolder` |
+| Tone down | `/impeccable quieter` |
 
 ## Hooks (automatic)
 
@@ -43,11 +53,21 @@ Apply when editing UI, CSS, or layout — not for API/backend-only changes.
 
 | Tool | Role |
 |------|------|
-| **Impeccable** | Creative direction, 23 commands, 44 detector rules |
-| **ui-ux-pro-max** | Palette/stack/UX lookup (Python CSV search) |
-| **design-refs/** | Curated awesome-design-md links (not vendored YAML dumps) |
+| **Impeccable** | Authors `PRODUCT.md` / `DESIGN.md`. 23 commands, detectors. |
+| **ui-ux-pro-max** | Palette/stack/UX lookup (Python CSV) — after step 2. |
+| **design-refs/** | 3–5 brand links + `library.md` (not vendored YAML dumps) |
+| **Superdesign** | Optional Marketplace plugin — critique / palette only. Never overwrite `DESIGN.md`. |
 
 Preserve committed brand tokens in `DESIGN.md` unless `/impeccable typeset`, `/impeccable colorize`, or the user explicitly requests a redesign.
+
+## Anti-patterns (confirm on the screenshot)
+
+- Full-bleed hairline dividers on data-heavy sections, unless asked.
+- Box-shadow / border too close to the background.
+- Native OS form chrome in a custom-themed app.
+- Skipping to ui-ux-pro-max on a new screen.
+- Treating a placeholder mock as the real product UI.
+
 ## Hybrid (UI + WebGL)
 
-If `.cursor/skills/r3f-three/` exists, use **3d-interactive-lane.mdc** for `scenes/` and R3F files — not this rule. See docs/HYBRID.md in cursor-agent-stack.
+If `.cursor/skills/r3f-three/` exists, use **3d-interactive-lane.mdc** for `scenes/` and R3F files — not this rule. Do not `/impeccable polish` WebGL. See docs/HYBRID.md in cursor-agent-stack.

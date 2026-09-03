@@ -13,7 +13,7 @@
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="MIT License" /></a>
   <a href="https://cursor.com"><img src="https://img.shields.io/badge/Cursor-Agent%20Hooks-000000?style=flat&logo=cursor&logoColor=white" alt="Cursor" /></a>
   <a href="https://nodejs.org"><img src="https://img.shields.io/badge/node-%3E%3D18-green.svg" alt="Node 18+" /></a>
-  <a href="https://github.com/syed-hassan7/cursor-agent-stack/releases/tag/v0.6.0"><img src="https://img.shields.io/badge/release-v0.6.0-blue.svg" alt="v0.6.0" /></a>
+  <a href="https://github.com/syed-hassan7/cursor-agent-stack/releases/tag/v0.7.0"><img src="https://img.shields.io/badge/release-v0.7.0-blue.svg" alt="v0.7.0" /></a>
 </p>
 
 <p align="center">
@@ -28,11 +28,12 @@
 
 | Layer | Install | What you get |
 |-------|---------|--------------|
-| **Global** | `install.ps1` | Session memory hooks, secret-guard, rules, caveman + RTK skills, RTK Cursor hook (Unix), CLI HUD |
-| **2D frontend** | `project-template/install-frontend.ps1` | Impeccable, ui-ux-pro-max, dashboard design-refs |
-| **3D / WebGL** | `project-template/install-3d.ps1` | r3f-three skill, react-three-fiber CSV, ProofScene gate |
+| **Global** | `install.ps1` | Session memory hooks, secret-guard, rules, caveman + RTK + design-lane + site-remake skills, RTK Cursor hook (Unix), CLI HUD |
+| **2D frontend** | `project-template/install-frontend.ps1` | Impeccable, ui-ux-pro-max, design-refs + **library.md** |
+| **3D / WebGL** | `project-template/install-3d.ps1` | r3f-three skill, react-three-fiber CSV, ProofScene gate, library.md |
 | **Hybrid** | Both installers | [HYBRID.md](docs/HYBRID.md) — lane routing for UI + R3F |
 | **Site remake** | `site-remake` skill (global) | [SITE-REMAKE.md](docs/SITE-REMAKE.md) — Phase 1 scrape/inventory from a live URL |
+| **Design library** | `design-lane` skill (global) | [DESIGN-RESOURCES.md](docs/DESIGN-RESOURCES.md) — adopt/reject + sequence. New machine: [NEW-DEVICE.md](docs/NEW-DEVICE.md) |
 
 Global stays lean (session hooks + slim rules). Heavy MCP belongs in **project** `.cursor/mcp.json` — see [MCP.md](docs/MCP.md). Project UI/3D modules opt in per repo.
 
@@ -48,8 +49,9 @@ Cursor's `/summarize` compresses the chat — but the agent still **forgets** fi
 | Noisy shell fills context (git, tsc, tests) | RTK skill + `rtk` prefix; Unix hook via `install.sh` |
 | `/summarize` amnesia | `preCompact` archives + re-injects checkpoint |
 | "What broke yesterday?" | Agent reads `.cursor/session/archive/` |
-| 2D UI slop | Impeccable + design-refs (per repo) |
+| 2D UI slop | Impeccable + design-refs + sequence (named extreme before lookup) |
 | 3D black canvas / wrong lane | r3f-three proof gate + stack CSV (per repo) |
+| Hours re-researching design tools | [DESIGN-RESOURCES.md](docs/DESIGN-RESOURCES.md) + [NEW-DEVICE.md](docs/NEW-DEVICE.md) |
 
 ![Four-step session memory workflow](docs/assets/workflow-session-memory.png)
 
@@ -62,7 +64,7 @@ Cursor's `/summarize` compresses the chat — but the agent still **forgets** fi
 ### Global
 
 ```powershell
-git clone https://github.com/darkyzowo/cursor-agent-stack.git
+git clone https://github.com/syed-hassan7/cursor-agent-stack.git
 cd cursor-agent-stack
 .\install.ps1
 .\scripts\verify.ps1
@@ -87,13 +89,15 @@ Docs index: [docs/README.md](docs/README.md)
 
 ## Modules
 
-**2D** — [FRONTEND.md](docs/FRONTEND.md): Impeccable, ui-ux-pro-max, design-refs. Pilot: Next.js dashboard.
+**2D** — [FRONTEND.md](docs/FRONTEND.md): Impeccable first, named extreme, then ui-ux-pro-max. Pilot: Next.js dashboard.
 
-**3D** — [3D.md](docs/3D.md): r3f-three, ProofScene gate, react-three-fiber CSV.
+**3D** — [3D.md](docs/3D.md): r3f-three, ProofScene gate, react-three-fiber CSV. blender-mcp is an escalation.
 
 **Hybrid** — [HYBRID.md](docs/HYBRID.md): both installers + lane routing.
 
 **Site remake** — [SITE-REMAKE.md](docs/SITE-REMAKE.md): Firecrawl + official shadcn MCP; Phase 1 inventory before scaffold.
+
+**Design library** — [DESIGN-RESOURCES.md](docs/DESIGN-RESOURCES.md): what to install, what to refuse. Pickup: [NEW-DEVICE.md](docs/NEW-DEVICE.md).
 
 ---
 
@@ -109,10 +113,11 @@ CI: `.github/workflows/verify.yml` on push/PR.
 
 ## Releases
 
-[CHANGELOG.md](CHANGELOG.md) · current **v0.6.0**
+[CHANGELOG.md](CHANGELOG.md) · current **v0.7.0**
 
 | Version | Highlights |
 |---------|------------|
+| **v0.7.0** | Design resource library, new-device playbook, `design-lane` skill, blender-mcp stub as escalation |
 | **v0.6.0** | Live-site remake playbook, `site-remake` skill, pinned Firecrawl/shadcn MCP stubs |
 | **v0.5.0** | Project-scoped MCP, ambient context cut, sessionStart de-dupe |
 | **v0.4.0** | Full-stack docs, VERSION file, README consolidation |
@@ -149,8 +154,8 @@ MIT — [LICENSE](LICENSE)
 |-----------|------|
 | Hooks | Checkpoint, compact, rehydrate, secret-guard |
 | Rules | Session memory, context budget, engineering defaults |
-| Pointers | `frontend-design-pointer`, `3d-interactive-pointer`, `site-remake-pointer` |
-| Skills | caveman, RTK (+ Cursor hook on Unix), site-remake |
+| Pointers | `frontend-design-pointer`, `3d-interactive-pointer`, `site-remake-pointer`, `design-lane-pointer` |
+| Skills | caveman, RTK (+ Cursor hook on Unix), site-remake, design-lane |
 | CLI HUD | `statusline.js` — context bar, compact warning |
 
 ### RTK (token-efficient shell)
@@ -180,9 +185,10 @@ Windows: RTK CLI + skill work; hook auto-install is Unix-only — use `rtk` pref
 | Hooks never run | `enableThirdPartyConfigs` + reload |
 | No archive after summarize | `hook-audit.log` → `preCompact` |
 | 3D black canvas | ProofScene first — [3D.md](docs/3D.md) |
-| Wrong design lane | [HYBRID.md](docs/HYBRID.md) |
+| Wrong design lane | [HYBRID.md](docs/HYBRID.md) + [DESIGN-RESOURCES.md](docs/DESIGN-RESOURCES.md) — named extreme before lookup |
 | MCP fills context / huge tool list | Keep servers out of global `~/.cursor/mcp.json` — use project `.cursor/mcp.json` — [MCP.md](docs/MCP.md) |
 | Rebuilding a live marketing site | Phase 1 scrape first — [SITE-REMAKE.md](docs/SITE-REMAKE.md); skill `site-remake`. Do not scaffold yet |
+| New machine, no design brain | Clone this repo → `install.ps1` → [NEW-DEVICE.md](docs/NEW-DEVICE.md). Do not re-audit Relume/Spline/Studio |
 | Double checkpoint after compact | v0.5+: single `session-rehydrate` only — re-run `install.ps1` |
 | Secret guard blocked write | Env vars, not literals |
 

@@ -15,5 +15,6 @@ When this workspace is **rebuilding a public marketing site from a live URL**:
 1. Read the **`site-remake`** skill, then the stack playbook [SITE-REMAKE.md](https://github.com/syed-hassan7/cursor-agent-stack/blob/master/docs/SITE-REMAKE.md).
 2. Phase 1 = map / scrape / inventory only. No app scaffold. No repo-root **`DESIGN.md`** (incumbent = `.cursor/session/<site>-current-design.md`).
 3. Firecrawl MCP belongs in **project** `.cursor/mcp.json` — see [MCP.md](https://github.com/syed-hassan7/cursor-agent-stack/blob/master/docs/MCP.md).
+4. Adopt / reject connectors: [DESIGN-RESOURCES.md](https://github.com/syed-hassan7/cursor-agent-stack/blob/master/docs/DESIGN-RESOURCES.md). Do not re-open Relume or Shadcn Studio.
 
 If this is a normal product repo (not a remake), this rule is inert.
